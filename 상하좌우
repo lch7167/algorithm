@@ -1,0 +1,25 @@
+//가장 왼쪽위 좌표는 (1,1), 가장 오른쪽 아래좌표는 (N,N)
+여행가는 L,R,U,D로 이동할 수 있고 정사각형 공간을 벗어나는 움직임은 무시됨.
+1. 첫째 줄에 공간의 크기를 나타내는 N이 주어짐
+2. 둘째 줄에 여행가 A가 이동할 계획서 내용이 주어짐
+여행가 A가 최종적으로 도착할 지점의 좌표를 공백으로 구분하여 출력
+//
+
+n = int(input())
+x,y=1,1
+list = input().split()
+
+dx=[0, 0, -1, 1]
+dy=[-1, 1, 0, 0]
+move=['L','R','U','D']
+
+for li in list:
+  for i in range(len(move)):
+    if li==move[i]:
+      nx=x+dx[i]
+      ny=y+dy[i]
+  if nx < 1 or ny < 1 or nx > n or ny > n:
+    continue
+  x,y = nx, ny
+
+print(x,y)
