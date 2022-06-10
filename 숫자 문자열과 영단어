@@ -1,0 +1,22 @@
+//
+다음은 숫자의 일부 자릿수를 영단어로 바꾸는 예시입니다.
+
+1478 → "one4seveneight"
+234567 → "23four5six7"
+10203 → "1zerotwozero3"
+이렇게 숫자의 일부 자릿수가 영단어로 바뀌어졌거나, 혹은 바뀌지 않고 그대로인 문자열 s가 매개변수로 주어집니다. s가 의미하는 원래 숫자를 return 하도록 solution 함수를 완성해주세요.
+//
+
+def solution(s):
+    answer = ''
+    dict = {'zero': '0', 'one': '1', 'two': '2', 'three': '3', 'four': '4', 'five': '5', 'six': '6', 'seven': '7', 'eight': '8', 'nine': '9'}
+    word = ''
+    for i in s: #문자열 중 문자가 있으면 word에 저장
+        if i.isdigit(): #숫자면 answer에 저장
+            answer += i
+            continue
+        word += i
+        if word in dict: #word에 저장된 문자가 dict에 있으면 숫자로 바꾸고 word 초기화
+            answer += dict[word]
+            word = ''
+    return int(answer)
