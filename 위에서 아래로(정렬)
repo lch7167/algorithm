@@ -1,0 +1,15 @@
+//
+첫째 줄에 수열에 속해 있는 수의 개수 N이 주어진다.
+둘째 줄 부터 N+1번째 줄까지 N개의 수가 입력된다.
+입력으로 주어진 수열이 내림차순으로 정렬된 결과를 공백으로 구분하여 출력한다.
+//
+
+n = int(input())
+array=[]
+for i in range(n):
+  array.append(int(input()))
+array.sort()
+array.reverse()
+
+for i in array:
+  print(i, end=' ')
