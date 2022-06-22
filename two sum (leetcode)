@@ -1,0 +1,22 @@
+//
+Given an array of integers  and an integer , return indices of the two numbers such that they add up to target.numstarget
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+You can return the answer in any order.
+Only one valid answer exists.
+//
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        answer=[]
+        for i in range(len(nums)):
+            #target - nums[i]가 nums[i]를 제외한 nums[]에 있으면 정답
+            if target-nums[i] in nums: 
+                if i==nums.index(target-nums[i]): #같은 element 두 번 사용 불가
+                    continue
+                answer.append(i)
+                answer.append(nums.index(target-nums[i]))
+                break
+        return answer
+    
