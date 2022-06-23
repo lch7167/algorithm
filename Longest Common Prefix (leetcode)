@@ -1,0 +1,20 @@
+//
+Write a function to find the longest common prefix string amongst an array of strings.
+If there is no common prefix, return an empty string "".
+Example 1:
+
+Input: strs = ["flower","flow","flight"]
+Output: "fl"
+//
+
+
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        answer=''
+        strs.sort(key=len) #strs를 길이가 작은 순으로 정렬
+        for num in range (len(strs[0])): #가장 길이가 작은 요소의 길이 만큼 탐색
+            for i in range (len(strs)): #strs를 모두 돌면서
+                if(strs[0][num] != strs[i][num]): #결과가 같지 않으면 종료
+                    return answer
+            answer+=strs[0][num] #같으면 answer에 추가
+        return answer
