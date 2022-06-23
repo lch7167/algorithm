@@ -1,0 +1,48 @@
+//
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+1.Open brackets must be closed by the same type of brackets.
+2.Open brackets must be closed in the correct order.
+
+Example 1:
+Input: s = "()"
+Output: true
+
+Example 2:
+Input: s = "()[]{}"
+Output: true
+
+Example 3:
+Input: s = "(]"
+Output: false
+//
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack=[]
+        for i in s:
+            try: #오류가 나지 않으면
+                if i=="(" or i=="[" or i=="{": # "(", "[", "{"를 입력받으면 스택에 저장
+                    stack.append(i)
+                elif i==")": # ")"인 경우 스택의 top이 "("면 "("를 스택에서 pop해줌
+                    if stack[-1]=="(":
+                        stack.pop()
+                    else: #아닌 경우 유효하지 않음 false 리턴
+                        return False
+                elif i=="}":  # "}"인 경우 스택의 top이 "{"면 "{"를 스택에서 pop해줌
+                    if stack[-1]=="{":
+                        stack.pop()
+                    else: #아닌 경우 유효하지 않음 false 리턴
+                        return False
+                elif i=="]":  # "]"인 경우 스택의 top이 "["면 "["를 스택에서 pop해줌
+                    if stack[-1]=="[":
+                        stack.pop()
+                    else: #아닌 경우 유효하지 않음 false 리턴
+                        return False
+            except: #스택 오류가 발생하면 유효하지 않는 입력, false 리턴
+                return False
+        print(stack)
+        if not stack: #스택이 최종적으로 비어있으면 올바른 짝, true 리턴
+            return True
