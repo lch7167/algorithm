@@ -1,0 +1,18 @@
+//
+Given a string s consisting of words and spaces, return the length of the last word in the string.
+
+A word is a maximal substring consisting of non-space characters only.
+
+Example 1:
+Input: s = "Hello World"
+Output: 5
+Explanation: The last word is "World" with length 5.
+//
+
+
+class Solution:
+    def lengthOfLastWord(self, s: str) -> int:
+        temp=s.strip().split(" ") #문자열 s의 왼쪽, 오른쪽 공백을 제거하고 공백을 기준으로 분리
+        answer=(len(temp[-1])) #분리한 리스트의 마지막 요소의 길이가 답
+        print(temp)
+        return answer
