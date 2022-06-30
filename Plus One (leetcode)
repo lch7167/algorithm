@@ -1,0 +1,33 @@
+//
+You are given a large integer represented as an integer array digits, where each digits[i] is the ith digit of the integer. 
+The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading 0's.
+
+Increment the large integer by one and return the resulting array of digits.
+
+Example 1:
+Input: digits = [1,2,3]
+Output: [1,2,4]
+Explanation: The array represents the integer 123.
+Incrementing by one gives 123 + 1 = 124.
+Thus, the result should be [1,2,4].
+//
+
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        temp=0
+        arr=[]
+        for i in range(len(digits)): #digits 리스트 숫자로 만들고 1 더하기
+            temp+=digits[-i-1]*(10**i)
+        answer=temp+1
+        
+        while answer>0: #10으로 반복해서 나누며 나머지 저장 값이 10보다 작아지면 저장하고 종료
+            if answer<10:
+                arr.append(answer)
+                break
+            ans=answer%10
+            answer=answer//10
+            arr.append(ans)
+           
+                
+        arr.reverse()
+        return arr
