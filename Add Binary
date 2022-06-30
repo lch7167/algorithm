@@ -1,0 +1,40 @@
+//
+Given two binary strings a and b, return their sum as a binary string. 
+
+Example 1:
+Input: a = "11", b = "1"
+Output: "100"
+
+Example 2:
+Input: a = "1010", b = "1011"
+Output: "10101"
+//
+
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        temp1=0
+        temp2=0
+        arr=[]
+        string=''
+        for i in range(len(a)): # 2진수 표현 a 10진수로 변환
+            temp1+= int(a[-i-1])*(2**i)
+        
+        for i in range(len(b)): # 2진수 표현 b 10진수로 변환
+            temp2+= int(b[-i-1])*(2**i)
+            
+        temp=temp1+temp2 # 변환한 두 값 더하기
+        
+        while temp>=0: # 더한 값 2진수로 변환
+            if temp<2:
+                arr.append(temp)
+                break
+            ans=temp%2
+            temp=temp//2
+            arr.append(ans)
+            
+        arr.reverse()
+        print(arr)
+        for i in arr: #str형으로 출력
+            string+=str(i)
+            
+        return(string)
