@@ -1,0 +1,52 @@
+//
+임한수와 임문빈은 서로 사랑하는 사이이다.
+
+임한수는 세상에서 팰린드롬인 문자열을 너무 좋아하기 때문에, 둘의 백일을 기념해서 임문빈은 팰린드롬을 선물해주려고 한다.
+
+임문빈은 임한수의 영어 이름으로 팰린드롬을 만들려고 하는데, 임한수의 영어 이름의 알파벳 순서를 적절히 바꿔서 팰린드롬을 만들려고 한다.
+
+임문빈을 도와 임한수의 영어 이름을 팰린드롬으로 바꾸는 프로그램을 작성하시오.
+
+입력
+첫째 줄에 임한수의 영어 이름이 있다. 알파벳 대문자로만 된 최대 50글자이다.
+
+출력
+첫째 줄에 문제의 정답을 출력한다. 만약 불가능할 때는 "I'm Sorry Hansoo"를 출력한다. 정답이 여러 개일 경우에는 사전순으로 앞서는 것을 출력한다.
+//
+
+s=str(input())
+temp=[]
+count=[]
+odd=0
+odd_c=''
+answer=''
+for i in range(len(s)): #문자열 s에 포함된 문자 추출
+  if s[i] not in temp:
+    temp.append(s[i])
+  
+temp.sort() #사전순 정렬
+
+for i in temp: #추출한 문자 문자열s에서의 등장 횟수 구하기
+  count.append(s.count(i))
+  if s.count(i)%2!=0: #등장횟수가 홀수인 문자 구하기
+    odd_c=i
+
+for i in count: #각 문자의 등장 횟수 중 홀수 개수 구하기
+  if i%2!=0:
+    odd+=1
+    
+if odd>1: #홀수가 2개 이상이라면 만들 수 없음
+  print("I'm Sorry Hansoo")
+    
+else: #만들 수 있는 경우
+  if len(s)%2==0: #문자열s의 길이가 짝수라면
+    for i in range(len(temp)): #각 문자를 등장횟수 절반만큼 가져옴
+      answer+=temp[i]*(count[i]//2)
+      result=answer+answer[::-1] #등장횟수 절반만큼 가져온 문자열과 그 역순을 더하면 팰린드롬 완성
+    print(result)
+
+  else: #문자열s의 길이가 홀수라면
+    for i in range(len(temp)):
+      answer+=temp[i]*(count[i]//2)
+      result=answer+odd_c+answer[::-1] #등장횟수가 홀수인 문자하나를 중간에 더해줌
+    print(result)
